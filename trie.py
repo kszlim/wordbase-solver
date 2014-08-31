@@ -7,8 +7,12 @@ class Trie:
 
 	def add_string(self, string):
 		node = self.root
-		for char in enumerate(string):
+		string_length = len(string)
+		for index, char in enumerate(string):
 			node = node.add_child(char)
+			#Add None to indicate end of string?
+			if index == string_length - 1:
+				node.add_child(None)
 
 	def string_exists(self, string):
 		node = self.root
@@ -33,6 +37,19 @@ class Trie:
 				if index % 10000 == 0:
 					print(index, 'words imported')
 			print('Done importing all words.')
+
+	def get_node(self, prefix = None, node = None):
+		if node is not None:
+			strings = []
+			node = self.root
+			for char in prefix:
+				if node.child_exists(char):
+					node = node.children[char]
+				else:
+		if prefix is not None:
+
+
+
 
 	# def print_words(self, string):
 	# 	node = self.root
