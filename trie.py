@@ -13,12 +13,14 @@ class Trie:
 	def string_exists(self, string):
 		node = self.root
 		trie_string = ''
+
 		for char in string:
 			if not node.child_exists(char):
 				break
 			if node.child_exists(char):
 				trie_string += node.child_exists(char).name
 			node = node.child_exists(char)
+
 		if trie_string == string:
 			return True
 		else:
@@ -31,3 +33,22 @@ class Trie:
 				if index % 10000 == 0:
 					print(index, 'words imported')
 			print('Done importing all words.')
+
+	# def print_words(self, string):
+	# 	node = self.root
+	# 	if len(string) > 0:
+	# 		for child in node.children:
+	# 			print_words(child)
+
+	# 	else:
+	# 		trie_string = ''
+	# 		word_list = []
+	# 		for char in string:
+	# 			node = node.child_exists(char)
+	# 			if node:
+	# 				trie_string += node.name
+	# 				if len(node.get_children()) > 0:
+	# 					for child in node.get_children():
+	# 						child_string = trie_string
+	# 						child_string
+	# 		for child in node.children:

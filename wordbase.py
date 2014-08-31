@@ -1,8 +1,9 @@
+from graph import Graph
 from trie import Trie
 
 trie = Trie()
 
-#trie.populate_trie('wordlist.txt')
+trie.populate_trie('wordlist.txt')
 
 def generate_board(file_name):
 		
@@ -14,9 +15,10 @@ def generate_board(file_name):
 		return board
 
 def look_for_words(trie, board, coordinate):
-	coordinate = (coordinate[1], coordinate[0])
-	
+	pass
 
-board = generate_board('board.txt')
+def words_at_coordinate(trie, board, coordinate):
 
-print(board)
+board = Graph(generate_board('board.txt'))
+
+board.find_and_add_neighbours()

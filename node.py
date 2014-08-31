@@ -4,8 +4,11 @@ class Node:
         self.children = {}
         self.name = name
             
-    def get_children(self):
+    def get_child_names(self):
         return [value.name for key, value in self.children.items()]
+
+    def get_children(self):
+        return [value for key, value in self.children.items()]
 
     def add_child(self, name):
         if self.child_exists(name):

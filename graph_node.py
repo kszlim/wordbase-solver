@@ -1,15 +1,19 @@
 class GraphNode:
 
-	def __init__(self, name, coordinates):
+	def __init__(self, name, coordinate):
 		self.neighbours = []
 		self.name = name
-		self.x = coordinates[0]
-		self.y = coordaintes[1]
+		self.x = coordinate[0]
+		self.y = coordinate[1]
 
-	def add_neighbour(self, coordinates):
-		self.neighbours.append(coordinates)
-		return coordinates
+	def add_neighbour(self, coordinate):
+		self.neighbours.append(coordinate)
+		return coordinate
 
-	def remove_neighbour(self, coordinates):
-		
+	def remove_neighbour(self, coordinate):
+		try:
+			self.neighbours.remove(coordinate)
+			return True
+		except:
+			return False
 
