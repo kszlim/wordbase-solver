@@ -10,6 +10,9 @@ class Node:
     def get_children(self):
         return [(key, value) for key, value in self.children.items()]
 
+    def get_neighbour_names(self):
+        return [value.name for value in self.children.values()]
+
     def add_child(self, name):
         if self.child_exists(name):
             return self.children[name]

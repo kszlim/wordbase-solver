@@ -1,5 +1,6 @@
 from graph import Graph
 from trie import Trie
+from copy import deepcopy
 
 trie = Trie()
 
@@ -8,32 +9,39 @@ trie.populate_trie('wordlist.txt')
 def generate_board(file_name):
 		
 	with open(file_name) as board_string:
-		board_string = board_string.read()
+		board_string = board_string.read().lower()
 		board = []
 		for i in range(0, len(board_string), 10):
 			board.append(board_string[i:i+10])
 		return board
 
-def look_for_words(trie, board, coordinate):
-	pass
+def look_for_words(trie, board, depth=8):
+	return [[words_at_coordinate(trie, board, (x,y), depth) for y in range(0,13)] for x in range(0,10)]
 
-def words_at_coordinate(trie, board, coordinate):
+def words_at_coordinate(trie, board, coordinate, depth, base_string=""):
 	words = []
+
 	root = board.graph[coordinate]
-	if trie.child_exists(root.name):
-		base_string = root.name
-		for neighbour in root.neighbours:
 
-			children = trie.get_children()
-			if len(children) > 0:
+	if root is None:
+		return words
+	
+	board.graph[root.name] = None
 
-def prefix_search(trie, board, coordinate, prefix):
-	if len(prefix) > 0:
-	else:
-		trie.
-
-
-
+	base_string += root.name
+	
+	trie_node = trie.get_node(list(base_string), trie.root)
+	if len(base_string) > depth:
+		return words
+	if trie_node:
+		if trie.string_exists(base_string):
+			words.append(base_string)
+		children = trie_node.get_neighbour_names()
+		if len(children):
+			for neighbour in root.neighbours:
+				for word in words_at_coordinate(trie, board, neighbour, depth, base_string):
+					words.append(word)
+	return words
 
 board = Graph(generate_board('board.txt'))
 
